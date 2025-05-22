@@ -1,0 +1,25 @@
+.container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.sign {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #aaaaaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  &Completed {
+    border: 1px solid #a4a4a4;
+    svg {
+      color: green;
+    }
+  }
+}
