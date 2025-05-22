@@ -6,10 +6,9 @@
   justify-content: flex-start;
   align-items: center;
   background-color: #fff;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #dddddd;
   box-sizing: border-box;
-  padding: 2px;
-  border-color: #aaaaaa;
+  padding: 2px 2px 2px 5px;
 
   &Closed {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
@@ -46,6 +45,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.3s ease;
+
+  &Closed {
+    transform: rotate(180deg);
+  }
 
   &Clear {
     all: unset;
@@ -53,7 +57,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #aaaaaa;
+    border: 2px solid #dddddd;
     margin-right: 10px;
     border-radius: 50%;
     box-sizing: border-box;

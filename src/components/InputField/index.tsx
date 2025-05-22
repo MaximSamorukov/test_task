@@ -33,7 +33,10 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
 
   return (
     <div className={cn(s.container, { [s.containerClosed]: !isOpen })}>
-      <button onClick={toggleCollapse} className={s.button}>
+      <button
+        onClick={toggleCollapse}
+        className={cn(s.button, { [s.buttonClosed]: !isOpen })}
+      >
         <Chevron />
       </button>
       <input
