@@ -9,8 +9,12 @@
   border-bottom: 2px solid #ccc;
   box-sizing: border-box;
   padding: 2px;
-  border-color: #999;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  border-color: #aaaaaa;
+
+  &Closed {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
 }
 
 .bigInput {

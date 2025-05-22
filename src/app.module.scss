@@ -5,4 +5,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  &Open {
+    z-index: 3;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 4px;
+      width: 98%;
+      height: 70%;
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      z-index: -5;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 8px;
+      width: 96%;
+      height: 70%;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      z-index: -6;
+    }
+  }
 }

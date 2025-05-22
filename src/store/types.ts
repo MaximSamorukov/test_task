@@ -30,3 +30,8 @@ export interface TodoContextType {
   filterTodos: (filter: string) => void;
   clearCompleted: () => void;
 }
+
+export interface CollapseContextType {
+  isOpen: boolean;
+  toggleCollapse: () => void;
+}

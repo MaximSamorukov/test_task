@@ -1,14 +1,22 @@
+import { useCollapeContext } from "@/store/context";
+import cn from "classnames";
 import { ActionPanel } from "../ActionPanel";
 import { InputField } from "../InputField";
 import { List } from "../List";
 import s from "./style.module.scss";
 
 export const Card = () => {
+  const { isOpen } = useCollapeContext();
+
   return (
-    <div className={s.container}>
+    <div className={cn(s.container, { [s.containerOpen]: isOpen })}>
       <InputField placeholder="What needs to be done?" />
-      <List />
-      <ActionPanel />
+      {isOpen ? (
+        <>
+          <List />
+          <ActionPanel />
+        </>
+      ) : null}
     </div>
   );
 };

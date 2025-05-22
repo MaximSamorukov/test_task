@@ -1,8 +1,9 @@
 import type React from "react";
+import cn from "classnames";
 import { useState } from "react";
 import Chevron from "@/assets/chevron.svg?react";
 import Close from "@/assets/close.svg?react";
-import { useTodoContext } from "@/store/context";
+import { useCollapeContext, useTodoContext } from "@/store/context";
 import s from "./style.module.scss";
 
 type InputFieldProps = {
@@ -11,6 +12,7 @@ type InputFieldProps = {
 
 export const InputField = ({ placeholder }: InputFieldProps) => {
   const { addTodo } = useTodoContext();
+  const { toggleCollapse, isOpen } = useCollapeContext();
   const [label, setLabel] = useState<string>();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -30,8 +32,8 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
   const clearInput = () => setLabel("");
 
   return (
-    <div className={s.container}>
-      <button className={s.button}>
+    <div className={cn(s.container, { [s.containerClosed]: !isOpen })}>
+      <button onClick={toggleCollapse} className={s.button}>
         <Chevron />
       </button>
       <input

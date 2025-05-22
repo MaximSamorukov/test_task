@@ -1,8 +1,14 @@
-import React, { createContext, useContext, type ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+} from "react";
 import useTodo from "./useTodo";
-import type { TodoContextType } from "./types";
+import type { CollapseContextType, TodoContextType } from "./types";
 
 const TodoContext = createContext<TodoContextType>({
+  activeTodos: [],
   todos: [],
   filter: undefined,
   addTodo: () => {},
@@ -23,5 +29,31 @@ export const TodoProvider: React.FC<{ children: ReactNode }> = ({
 export const useTodoContext = () => {
   const context = useContext(TodoContext);
   if (!context.addTodo.name) throw new Error("Отсутствует TodoProvider");
+  return context;
+};
+
+const CollapseContext = createContext<CollapseContextType>({
+  isOpen: false,
+  toggleCollapse: () => {},
+});
+
+export const CollapseProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [isOpen, setOpen] = useState(false);
+
+  const toggleCollapse = () => {
+    setOpen((prev) => !prev);
+  };
+  return (
+    <CollapseContext.Provider value={{ isOpen, toggleCollapse }}>
+      {children}
+    </CollapseContext.Provider>
+  );
+};
+
+export const useCollapeContext = () => {
+  const context = useContext(CollapseContext);
+  if (!context.toggleCollapse) throw new Error("Отсутствует CollapseProvider");
   return context;
 };

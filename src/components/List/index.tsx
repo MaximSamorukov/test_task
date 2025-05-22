@@ -6,7 +6,7 @@ export const List = () => {
   const { todos } = useTodoContext();
   return (
     <div className={s.container}>
-      {todos.map((i, index) => (
+      {todos.map((i) => (
         <Item key={i.id} id={i.id} jobTitle={i.label} completed={i.completed} />
       ))}
     </div>
