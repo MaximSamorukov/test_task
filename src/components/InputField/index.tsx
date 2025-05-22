@@ -42,9 +42,11 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
         onChange={handleChange}
         value={label}
       />
-      <button onClick={clearInput} className={s.buttonClear}>
-        <Close />
-      </button>
+      {label?.length ? (
+        <button onClick={clearInput} className={s.buttonClear}>
+          <Close />
+        </button>
+      ) : null}
     </div>
   );
 };
