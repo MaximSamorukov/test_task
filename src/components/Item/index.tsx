@@ -8,18 +8,15 @@ type ItemProps = {
   completed: boolean;
 };
 
-export const Item: React.FC<ItemProps> = ({ id, jobTitle, completed }) => {
-  console.log(id);
-  return (
-    <div className={s.container}>
-      <Completed completed={completed} />
-      <div className={s.jobTitleContainer}>
-        <div
-          className={cn(s.jobTitleLabel, { [s.jobTitleCompleted]: completed })}
-        >
-          {jobTitle}
-        </div>
+export const Item: React.FC<ItemProps> = ({ id, jobTitle, completed }) => (
+  <div className={s.container}>
+    <Completed id={id} completed={completed} />
+    <div className={s.jobTitleContainer}>
+      <div
+        className={cn(s.jobTitleLabel, { [s.jobTitleCompleted]: completed })}
+      >
+        {jobTitle}
       </div>
     </div>
-  );
-};
+  </div>
+);

@@ -1,34 +1,12 @@
 import { useReducer } from "react";
-
-enum Action {
-  ADD_TODO = "ADD_TODO",
-  TOGGLE_TODO = "TOGGLE_TODO",
-  FILTER_TODOS = "FILTER_TODOS",
-  CLEAR_COMPLETED = "CLEAR_COMPLETED",
-}
-
-type TodoAction = {
-  type: Action;
-  payload?: string;
-};
+import { Action, type TodoAction, type TodoState } from "./types";
 
 const ADD_TODO = Action.ADD_TODO;
 const TOGGLE_TODO = Action.TOGGLE_TODO;
 const FILTER_TODOS = Action.FILTER_TODOS;
 const CLEAR_COMPLETED = Action.CLEAR_COMPLETED;
 
-type TodoType = {
-  id: string;
-  label?: string;
-  completed: boolean;
-};
-
-type TodoState = {
-  todos: TodoType[];
-  filter?: string;
-};
-
-const initialState: TodoState = {
+export const initialState: TodoState = {
   todos: [],
   filter: "all",
 };
@@ -42,7 +20,7 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
           ...state.todos,
           {
             id: Date.now().toLocaleString(),
-            label: action.payload,
+            label: action.payload!,
             completed: false,
           },
         ],
@@ -94,8 +72,11 @@ const useTodo = () => {
     if (state.filter === "completed") return todo.completed;
     return true;
   });
+  const activeTodos = state.todos.filter((todo) => !todo.completed);
 
   return {
+    activeTodos,
+    filter: state.filter,
     todos: filteredTodos,
     addTodo,
     toggleTodo,

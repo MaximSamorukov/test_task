@@ -42,4 +42,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &Clear {
+    all: unset;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #aaaaaa;
+    margin-right: 10px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 5px;
+    cursor: pointer;
+  }
 }

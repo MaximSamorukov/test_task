@@ -1,19 +1,14 @@
+import { useTodoContext } from "@/store/context";
 import { Item } from "../Item";
 import s from "./style.module.scss";
 
 export const List = () => {
+  const { todos } = useTodoContext();
   return (
     <div className={s.container}>
-      {Array(8)
-        .fill({})
-        .map((_i, index) => (
-          <Item
-            key={index}
-            id={index.toString()}
-            jobTitle={`jobTitle_${index}`}
-            completed={index % 2 === 0}
-          />
-        ))}
+      {todos.map((i, index) => (
+        <Item key={i.id} id={i.id} jobTitle={i.label} completed={i.completed} />
+      ))}
     </div>
   );
 };
