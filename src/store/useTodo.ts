@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { create } from "zustand";
 import { Action, type TodoAction, type TodoState } from "./types";
 
 const ADD_TODO = Action.ADD_TODO;
@@ -15,7 +15,6 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        ...state,
         todos: [
           {
             id: Date.now().toLocaleString(),
@@ -27,7 +26,6 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
       };
     case TOGGLE_TODO:
       return {
-        ...state,
         todos: state.todos.map((todo) =>
           todo.id === action.payload
             ? { ...todo, completed: !todo.completed }
@@ -35,10 +33,9 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
         ),
       };
     case FILTER_TODOS:
-      return { ...state, filter: action.payload };
+      return { filter: action.payload };
     case CLEAR_COMPLETED:
       return {
-        ...state,
         todos: state.todos.filter((todo) => !todo.completed),
       };
     default:
@@ -46,8 +43,18 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
   }
 };
 
+const useTodoStore = create<
+  TodoState & { dispatch: (args: TodoAction) => void }
+>((set) => ({
+  ...initialState,
+  dispatch: (args: TodoAction) =>
+    set((state: TodoState) => todoReducer(state, args)),
+}));
+
 const useTodo = () => {
-  const [state, dispatch] = useReducer(todoReducer, initialState);
+  const dispatch = useTodoStore((s) => s.dispatch);
+  const todos = useTodoStore((s) => s.todos);
+  const filter = useTodoStore((s) => s.filter);
 
   const addTodo = (label: string) => {
     if (label.trim()) {
@@ -67,16 +74,16 @@ const useTodo = () => {
     dispatch({ type: CLEAR_COMPLETED });
   };
 
-  const filteredTodos = state.todos.filter((todo) => {
-    if (state.filter === "active") return !todo.completed;
-    if (state.filter === "completed") return todo.completed;
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") return !todo.completed;
+    if (filter === "completed") return todo.completed;
     return true;
   });
-  const activeTodos = state.todos.filter((todo) => !todo.completed);
+  const activeTodos = todos.filter((todo) => !todo.completed);
 
   return {
     activeTodos,
-    filter: state.filter,
+    filter,
     todos: filteredTodos,
     addTodo,
     toggleTodo,
