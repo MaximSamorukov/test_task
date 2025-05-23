@@ -45,7 +45,7 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
 
 const useTodoStore = create<
   TodoState & { dispatch: (args: TodoAction) => void }
->((set) => ({
+>()((set) => ({
   ...initialState,
   dispatch: (args: TodoAction) =>
     set((state: TodoState) => todoReducer(state, args)),
