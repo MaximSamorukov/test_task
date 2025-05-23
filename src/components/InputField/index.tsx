@@ -22,6 +22,9 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
         addTodo(value);
         setLabel("");
       }
+      if (!isOpen) {
+        toggleCollapse();
+      }
     }
   };
 

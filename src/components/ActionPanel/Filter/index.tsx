@@ -1,14 +1,13 @@
-import { Active } from "./Active";
-import { All } from "./All";
-import { Completed } from "./Completed";
+import { filterButtons } from "../constants";
+import { FilterButton } from "./FilterButton";
 import s from "./style.module.scss";
 
 export const Filter = () => {
   return (
     <div className={s.container}>
-      <All />
-      <Active />
-      <Completed />
+      {filterButtons.map((i) => (
+        <FilterButton key={i} filterType={i} />
+      ))}
     </div>
   );
 };
