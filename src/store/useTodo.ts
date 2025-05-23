@@ -17,12 +17,12 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
       return {
         ...state,
         todos: [
-          ...state.todos,
           {
             id: Date.now().toLocaleString(),
             label: action.payload!,
             completed: false,
           },
+          ...state.todos,
         ],
       };
     case TOGGLE_TODO:

@@ -1,9 +1,5 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  type ReactNode,
-} from "react";
+import React, { createContext, useContext, type ReactNode } from "react";
+import { create } from "zustand";
 import useTodo from "./useTodo";
 import type { CollapseContextType, TodoContextType } from "./types";
 
@@ -37,14 +33,17 @@ const CollapseContext = createContext<CollapseContextType>({
   toggleCollapse: () => {},
 });
 
+const useCollapseState = create<CollapseContextType>((set) => ({
+  isOpen: false,
+  toggleCollapse: () => set((state) => ({ isOpen: !state.isOpen })),
+}));
+
 export const CollapseProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [isOpen, setOpen] = useState(false);
+  const isOpen = useCollapseState((s) => s.isOpen);
+  const toggleCollapse = useCollapseState((s) => s.toggleCollapse);
 
-  const toggleCollapse = () => {
-    setOpen((prev) => !prev);
-  };
   return (
     <CollapseContext.Provider value={{ isOpen, toggleCollapse }}>
       {children}
