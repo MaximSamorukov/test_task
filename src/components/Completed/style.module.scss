@@ -1,3 +1,5 @@
+@import "../../main.scss";
+
 .container {
   all: unset;
   width: 60px;
@@ -13,15 +15,15 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid #aaaaaa;
+  border: 1px solid $text-color;
   display: flex;
   justify-content: center;
   align-items: center;
   color: transparent;
   &Completed {
-    border: 1px solid #a4a4a4;
+    border: 1px solid $grey-5;
     svg {
-      color: rgb(73, 211, 73);
+      color: $complete;
     }
   }
 }
