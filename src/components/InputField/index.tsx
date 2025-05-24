@@ -15,7 +15,7 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
   const { addTodo } = useTodoContext();
   const { toggleCollapse, isOpen } = useCollapeContext();
 
-  const [label, setLabel] = useState<string>();
+  const [label, setLabel] = useState<string>("");
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.code === "Enter") {
