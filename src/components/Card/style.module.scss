@@ -1,4 +1,4 @@
-@import "../../main.scss";
+@use "../../variables.scss" as s;
 
 .container {
   width: 100%;
@@ -9,6 +9,6 @@
   flex-direction: column;
 
   &Open {
-    box-shadow: 0 2px 4px $grey-2;
+    box-shadow: 0 2px 4px s.$grey-2;
   }
 }

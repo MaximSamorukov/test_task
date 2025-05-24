@@ -1,4 +1,4 @@
-@import "../../main.scss";
+@use "../../variables.scss" as s;
 
 .container {
   width: 100%;
@@ -11,5 +11,5 @@
   box-sizing: border-box;
   padding-left: 5px;
   padding-right: 5px;
-  border-top: 1px solid $grey-1;
+  border-top: 1px solid s.$grey-1;
 }

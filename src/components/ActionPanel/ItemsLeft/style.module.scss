@@ -1,4 +1,4 @@
-@import "../../../main.scss";
+@use "../../../variables.scss" as s;
 
 .container {
   height: fit-content;
@@ -11,7 +11,7 @@
 
 .label {
   font-size: 16px;
-  color: $grey-0;
+  color: s.$grey-0;
   font-weight: 300;
   cursor: pointer;
 }

@@ -1,4 +1,4 @@
-@import "./main.scss";
+@use "./variables" as s;
 
 .container {
   width: 500px;
@@ -19,9 +19,9 @@
       left: 4px;
       width: 98%;
       height: 70%;
-      background: $grey-4;
-      border: 1px solid $grey-1;
-      box-shadow: 0 2px 4px $grey-2;
+      background: s.$grey-4;
+      border: 1px solid s.$grey-1;
+      box-shadow: 0 2px 4px s.$grey-2;
       z-index: -5;
     }
 
@@ -32,9 +32,9 @@
       left: 8px;
       width: 96%;
       height: 70%;
-      background: $grey-3;
-      border: 1px solid $grey-1;
-      box-shadow: 0 2px 4px $grey-2;
+      background: s.$grey-3;
+      border: 1px solid s.$grey-1;
+      box-shadow: 0 2px 4px s.$grey-2;
       z-index: -6;
     }
   }

@@ -1,9 +1,9 @@
-@import "../../main.scss";
+@use "../../variables.scss" as s;
 
 .container {
   width: 100%;
   height: 60px;
-  border-bottom: 1px solid $grey-1;
+  border-bottom: 1px solid s.$grey-1;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -30,7 +30,7 @@
   }
 
   &Completed {
-    color: $text-color;
+    color: s.$text-color;
     text-decoration: line-through;
   }
 }
