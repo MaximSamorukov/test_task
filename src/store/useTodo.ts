@@ -1,5 +1,10 @@
-import { create } from "zustand";
-import { Action, type TodoAction, type TodoState } from "./types";
+import { createStore, useStore, type StoreApi } from "zustand";
+import {
+  Action,
+  type TodoAction,
+  type TodoState,
+  type TodoStateAction,
+} from "./types";
 
 const ADD_TODO = Action.ADD_TODO;
 const TOGGLE_TODO = Action.TOGGLE_TODO;
@@ -43,18 +48,20 @@ const todoReducer = (state: TodoState, action: TodoAction) => {
   }
 };
 
-const useTodoStore = create<
-  TodoState & { dispatch: (args: TodoAction) => void }
->()((set) => ({
-  ...initialState,
-  dispatch: (args: TodoAction) =>
-    set((state: TodoState) => todoReducer(state, args)),
-}));
+export type TodoStore = TodoState & TodoStateAction;
+export type TodoStoreApi = StoreApi<TodoStore>;
 
-const useTodo = () => {
-  const dispatch = useTodoStore((s) => s.dispatch);
-  const todos = useTodoStore((s) => s.todos);
-  const filter = useTodoStore((s) => s.filter);
+export const todoStoreCreator = () =>
+  createStore<TodoStore>((set) => ({
+    ...initialState,
+    dispatch: (args: TodoAction) =>
+      set((state: TodoState) => todoReducer(state, args)),
+  }));
+
+export const useTodo = (store: TodoStoreApi) => {
+  const dispatch = useStore(store, (s) => s.dispatch);
+  const todos = useStore(store, (s) => s.todos);
+  const filter = useStore(store, (s) => s.filter);
 
   const addTodo = (label: string) => {
     if (label.trim()) {
@@ -91,5 +98,3 @@ const useTodo = () => {
     clearCompleted,
   };
 };
-
-export default useTodo;

@@ -21,6 +21,10 @@ export type TodoState = {
   filter?: string;
 };
 
+export type TodoStateAction = {
+  dispatch: (arg: TodoAction) => void;
+};
+
 export interface TodoContextType {
   filter?: string;
   todos: TodoType[];

@@ -1,4 +1,4 @@
-import { useTodoContext } from "@/store/context";
+import { useTodoContext } from "@/store/todoContext";
 import { Item } from "../Item";
 import s from "./style.module.scss";
 

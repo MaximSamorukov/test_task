@@ -3,8 +3,9 @@ import cn from "classnames";
 import { useState } from "react";
 import Chevron from "@/assets/chevron.svg?react";
 import Close from "@/assets/close.svg?react";
-import { useCollapeContext, useTodoContext } from "@/store/context";
+import { useTodoContext } from "@/store/todoContext";
 import s from "./style.module.scss";
+import { useCollapeContext } from "@/store/collapseContext";
 
 type InputFieldProps = {
   placeholder?: string;
@@ -13,6 +14,7 @@ type InputFieldProps = {
 export const InputField = ({ placeholder }: InputFieldProps) => {
   const { addTodo } = useTodoContext();
   const { toggleCollapse, isOpen } = useCollapeContext();
+
   const [label, setLabel] = useState<string>();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

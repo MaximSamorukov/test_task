@@ -1,4 +1,4 @@
-import { useTodoContext } from "@/store/context";
+import { useTodoContext } from "@/store/todoContext";
 import cn from "classnames";
 import s from "./style.module.scss";
 import { filterButtonLabels } from "../../constants";

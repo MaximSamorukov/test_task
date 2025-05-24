@@ -1,4 +1,4 @@
-import { useTodoContext } from "@/store/context";
+import { useTodoContext } from "@/store/todoContext";
 import s from "./style.module.scss";
 
 export const ClearCompleted = () => {

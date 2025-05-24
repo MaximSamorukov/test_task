@@ -1,4 +1,4 @@
-import { useCollapeContext } from "@/store/context";
+import { useCollapeContext } from "@/store/collapseContext";
 import cn from "classnames";
 import { ActionPanel } from "../ActionPanel";
 import { InputField } from "../InputField";

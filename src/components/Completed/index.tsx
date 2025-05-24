@@ -1,7 +1,7 @@
 import Check from "@/assets/check.svg?react";
 import cn from "classnames";
 import s from "./style.module.scss";
-import { useTodoContext } from "@/store/context";
+import { useTodoContext } from "@/store/todoContext";
 
 export const Completed = ({
   completed,

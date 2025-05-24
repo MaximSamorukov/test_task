@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { Header } from "./components/Header";
 import { Card } from "./components/Card";
-import { useCollapeContext } from "./store/context";
+import { useCollapeContext } from "./store/collapseContext";
 
 import s from "./app.module.scss";
 
