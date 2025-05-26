@@ -1,54 +1,34 @@
-# React + TypeScript + Vite
+# TODO-приложение (тестовое задание)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Современное TODO-приложение, разработанное с упором на производительность, масштабируемость и удобство разработки. Использует передовые инструменты и библиотеки из экосистемы React и TypeScript.
 
-Currently, two official plugins are available:
+Деплой [https://test-task-two-gold.vercel.app/](https://test-task-two-gold.vercel.app/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Технологии и инструменты
 
-## Expanding the ESLint configuration
+- **React 19** — декларативный UI, поддержка новых возможностей React.
+- **Vite** — молниеносная сборка с нативной поддержкой ES-модулей.
+- **TypeScript** — статическая типизация для читаемости и предотвращения ошибок.
+- **Zustand** — минималистичная библиотека управления состоянием вместо Redux.
+- **Sass** — препроцессор для удобных и масштабируемых стилей.
+- **classnames** — утилита для условных классов в JSX.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧪 Тестирование
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Vitest** — быстрый тестовый фреймворк, совместимый с Vite и TypeScript.
+- **Testing Library** — тесты, имитирующие пользовательские сценарии, с фокусом на доступность.
+- **jsdom** — эмулятор DOM для тестов в Node.js.
+- **@vitest/coverage-v8** — анализ покрытия кода тестами.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📦 Структура проекта
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Алиасы (например, `@/` для `src`) и модульные контексты для масштабируемости и повторного использования.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🚀 Скрипты
+
+- `dev` — запуск в режиме разработки.
+- `build` — сборка для продакшена с компиляцией TypeScript.
+- `preview` — предпросмотр собранной версии.
+- `lint` — проверка кода.
+- `test` — запуск тестов.
+- `coverage` — тесты с анализом покрытия.
