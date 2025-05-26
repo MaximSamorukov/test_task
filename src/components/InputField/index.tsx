@@ -56,7 +56,11 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
         value={label}
       />
       {label?.length ? (
-        <button onClick={clearInput} className={s.buttonClear}>
+        <button
+          data-testid="delete-btn"
+          onClick={clearInput}
+          className={s.buttonClear}
+        >
           <Close />
         </button>
       ) : null}
