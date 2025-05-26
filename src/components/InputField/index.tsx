@@ -42,6 +42,7 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
   return (
     <div className={cn(s.container, { [s.containerClosed]: !isOpen })}>
       <button
+        data-testid="open-btn"
         onClick={toggleCollapse}
         className={cn(s.button, { [s.buttonClosed]: !isOpen })}
       >

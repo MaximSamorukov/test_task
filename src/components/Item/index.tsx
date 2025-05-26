@@ -9,7 +9,7 @@ type ItemProps = {
 };
 
 export const Item: React.FC<ItemProps> = ({ id, jobTitle, completed }) => (
-  <div className={s.container}>
+  <div data-testid={jobTitle} className={s.container}>
     <Completed id={id} completed={completed} />
     <div className={s.jobTitleContainer}>
       <div

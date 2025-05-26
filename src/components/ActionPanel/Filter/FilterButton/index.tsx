@@ -11,7 +11,11 @@ export const FilterButton = ({ filterType }: { filterType: string }) => {
   };
   return (
     <div className={cn(s.container, { [s.activated]: filter === filterType })}>
-      <button onClick={handleClick} className={s.label}>
+      <button
+        data-testid={filterType}
+        onClick={handleClick}
+        className={s.label}
+      >
         {filterButtonLabels[filterType as keyof typeof filterButtonLabels]}
       </button>
     </div>

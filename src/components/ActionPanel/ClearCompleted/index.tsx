@@ -6,7 +6,7 @@ export const ClearCompleted = () => {
 
   const handleClear = () => clearCompleted();
   return (
-    <div className={s.container}>
+    <div data-testid="clearCompleted" className={s.container}>
       <button onClick={handleClear} className={s.label}>
         Clear completed
       </button>
