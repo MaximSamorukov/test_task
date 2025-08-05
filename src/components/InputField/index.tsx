@@ -1,7 +1,6 @@
 import type React from "react";
 import cn from "classnames";
 import { useCallback, useMemo, useState } from "react";
-import Chevron from "@/assets/chevron.svg?react";
 import { useTodoContext } from "@/store/todoContext";
 import s from "./style.module.scss";
 import { useCollapeContext } from "@/store/collapseContext";
