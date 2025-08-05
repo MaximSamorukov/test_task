@@ -1,25 +1,19 @@
-import Check from "@/assets/check.svg?react";
-import cn from "classnames";
-import s from "./style.module.scss";
-import { useTodoContext } from "@/store/todoContext";
+import React, { useCallback } from "react";
+import { CompletedBtn } from "./CompletedBtn";
 
-export const Completed = ({
-  completed,
-  id,
-}: {
-  completed: boolean;
-  id: string;
-}) => {
-  const { toggleTodo } = useTodoContext();
-
-  const handleClick = () => {
-    toggleTodo(id);
-  };
-  return (
-    <button onClick={handleClick} className={s.container}>
-      <div className={cn(s.sign, { [s.signCompleted]: completed })}>
-        <Check />
-      </div>
-    </button>
-  );
-};
+export const Completed = React.memo(
+  ({
+    completed,
+    id,
+    toggleTodo,
+  }: {
+    toggleTodo: (a: string) => void;
+    completed: boolean;
+    id: string;
+  }) => {
+    const handleClick = useCallback(() => {
+      toggleTodo(id);
+    }, [id]);
+    return <CompletedBtn handleClick={handleClick} completed={completed} />;
+  }
+);

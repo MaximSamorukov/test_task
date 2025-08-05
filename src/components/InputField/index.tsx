@@ -1,11 +1,12 @@
 import type React from "react";
 import cn from "classnames";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Chevron from "@/assets/chevron.svg?react";
-import Close from "@/assets/close.svg?react";
 import { useTodoContext } from "@/store/todoContext";
 import s from "./style.module.scss";
 import { useCollapeContext } from "@/store/collapseContext";
+import { DeleteBtn } from "./DeleteBtn";
+import { ToggleBtn } from "./ToggleBtn";
 
 type InputFieldProps = {
   placeholder?: string;
@@ -32,22 +33,17 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
       }
     }
   };
+  const showDeleteBtn = useMemo(() => !!label.length, [label]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLabel(e.currentTarget.value);
   };
 
-  const clearInput = () => setLabel("");
+  const clearInput = useCallback(() => setLabel(""), []);
 
   return (
     <div className={cn(s.container, { [s.containerClosed]: !isOpen })}>
-      <button
-        data-testid="open-btn"
-        onClick={toggleCollapse}
-        className={cn(s.button, { [s.buttonClosed]: !isOpen })}
-      >
-        <Chevron />
-      </button>
+      <ToggleBtn toggleCollapse={toggleCollapse} isOpen={isOpen} />
       <input
         onKeyDown={handleKeyDown}
         type="text"
@@ -56,15 +52,7 @@ export const InputField = ({ placeholder }: InputFieldProps) => {
         onChange={handleChange}
         value={label}
       />
-      {label?.length ? (
-        <button
-          data-testid="delete-btn"
-          onClick={clearInput}
-          className={s.buttonClear}
-        >
-          <Close />
-        </button>
-      ) : null}
+      <DeleteBtn clearInput={clearInput} show={showDeleteBtn} />
     </div>
   );
 };

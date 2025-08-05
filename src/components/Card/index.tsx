@@ -11,12 +11,8 @@ export const Card = () => {
   return (
     <div className={cn(s.container, { [s.containerOpen]: isOpen })}>
       <InputField placeholder="What needs to be done?" />
-      {isOpen ? (
-        <>
-          <List />
-          <ActionPanel />
-        </>
-      ) : null}
+      <List />
+      <ActionPanel />
     </div>
   );
 };

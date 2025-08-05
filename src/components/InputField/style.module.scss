@@ -27,7 +27,7 @@
   font-size: 30px;
   padding: 0 20px;
   border: none;
-  font-family: "Roboto", sans-serif;
+  font-family: s.$font-family-base;
 
   &::placeholder {
     color: s.$text-color;

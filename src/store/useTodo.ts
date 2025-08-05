@@ -5,6 +5,7 @@ import {
   type TodoState,
   type TodoStateAction,
 } from "./types";
+import { useCallback, useMemo } from "react";
 
 const ADD_TODO = Action.ADD_TODO;
 const TOGGLE_TODO = Action.TOGGLE_TODO;
@@ -63,30 +64,36 @@ export const useTodo = (store: TodoStoreApi) => {
   const todos = useStore(store, (s) => s.todos);
   const filter = useStore(store, (s) => s.filter);
 
-  const addTodo = (label: string) => {
+  const addTodo = useCallback((label: string) => {
     if (label.trim()) {
       dispatch({ type: ADD_TODO, payload: label });
     }
-  };
+  }, []);
 
-  const toggleTodo = (id: string) => {
+  const toggleTodo = useCallback((id: string) => {
     dispatch({ type: TOGGLE_TODO, payload: id });
-  };
+  }, []);
 
-  const filterTodos = (filter: string) => {
+  const filterTodos = useCallback((filter: string) => {
     dispatch({ type: FILTER_TODOS, payload: filter });
-  };
+  }, []);
 
-  const clearCompleted = () => {
+  const clearCompleted = useCallback(() => {
     dispatch({ type: CLEAR_COMPLETED });
-  };
-
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return !todo.completed;
-    if (filter === "completed") return todo.completed;
-    return true;
-  });
-  const activeTodos = todos.filter((todo) => !todo.completed);
+  }, []);
+  const filteredTodos = useMemo(
+    () =>
+      todos.filter((todo) => {
+        if (filter === "active") return !todo.completed;
+        if (filter === "completed") return todo.completed;
+        return true;
+      }),
+    [todos, filter]
+  );
+  const activeTodos = useMemo(
+    () => todos.filter((todo) => !todo.completed),
+    [todos]
+  );
 
   return {
     activeTodos,
